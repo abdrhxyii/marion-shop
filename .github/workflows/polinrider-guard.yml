@@ -1,0 +1,28 @@
+name: PolinRider Guard
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: PolinRider Guard
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Scan repository
+        uses: richkazz/Operation-PolinRider@v0.1.4
+        with:
+          path: "."
+          no-git: "false"
